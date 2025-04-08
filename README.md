@@ -35,15 +35,15 @@ Clean the dataset and prepare features for ML algorithms.
 **Code Output:**
 
 ```
-+--------------------+-----------+
-|features            |ChurnIndex |
-+--------------------+-----------+
-|[0.0,12.0,29.85,29...|0.0        |
-|[0.0,1.0,56.95,56....|1.0        |
-|[1.0,5.0,53.85,108...|0.0        |
-|[0.0,2.0,42.30,184...|1.0        |
-|[0.0,8.0,70.70,151...|0.0        |
-+--------------------+-----------+
++------------------------------------------------+-----------+
+|features                                        |ChurnIndex |
++------------------------------------------------+-----------+
+|(10,[1,3,5,7],[91.74,1.0,1.0,1.0])              |1.0        |
+|[2.0,71.48,136.04,1.0,0.0,1.0,0.0,0.0,1.0,0.0]  |1.0        |
+|(10,[1,4,5,7],[65.27,1.0,1.0,1.0])              |1.0        |
+|[53.0,48.26,2075.51,0.0,1.0,0.0,1.0,0.0,0.0,1.0]|0.0        |
+|[41.0,38.79,1563.96,0.0,1.0,1.0,0.0,0.0,0.0,1.0]|0.0        |
++------------------------------------------------+-----------+
 ```
 ---
 
@@ -57,9 +57,9 @@ Train a logistic regression model and evaluate it using AUC (Area Under ROC Curv
 2. Train a logistic regression model.
 3. Use `BinaryClassificationEvaluator` to evaluate.
 
-**Code Output Example:**
+**Code Output:**
 ```
-Logistic Regression Model Accuracy: 0.83
+Logistic Regression Model Accuracy: 0.7168290854572711
 ```
 
 ---
@@ -73,17 +73,17 @@ Select the top 5 most important features using Chi-Square feature selection.
 1. Use `ChiSqSelector` to rank and select top 5 features.
 2. Print the selected feature vectors.
 
-**Code Output Example:**
+**Code Output:**
 ```
-+--------------------+-----------+
-|selectedFeatures    |ChurnIndex |
-+--------------------+-----------+
-|[0.0,29.85,0.0,0.0...|0.0        |
-|[1.0,56.95,1.0,0.0...|1.0        |
-|[0.0,53.85,0.0,1.0...|0.0        |
-|[1.0,42.30,0.0,0.0...|1.0        |
-|[0.0,70.70,0.0,1.0...|0.0        |
-+--------------------+-----------+
++----------------------+-----------+
+|selectedFeatures      |ChurnIndex |
++----------------------+-----------+
+|(5,[1,2],[1.0,1.0])   |1.0        |
+|[2.0,1.0,0.0,1.0,0.0] |1.0        |
+|(5,[1,2],[1.0,1.0])   |1.0        |
+|[53.0,0.0,0.0,0.0,1.0]|0.0        |
+|[41.0,1.0,0.0,0.0,1.0]|0.0        |
++----------------------+-----------+
 
 ```
 
@@ -105,25 +105,27 @@ Use CrossValidator to tune models and compare their AUC performance.
 2. Use `CrossValidator` for 5-fold cross-validation.
 3. Evaluate and print best model results.
 
-**Code Output Example:**
+**Code Output:**
 ```
 Tuning LogisticRegression...
-LogisticRegression Best Model Accuracy (AUC): 0.84
+LogisticRegression Best Model Accuracy (AUC): 0.714392803598201
 Best Params for LogisticRegression: regParam=0.01, maxIter=20
 
 Tuning DecisionTree...
-DecisionTree Best Model Accuracy (AUC): 0.77
+DecisionTree Best Model Accuracy (AUC): 0.6387743628185907
 Best Params for DecisionTree: maxDepth=10
 
 Tuning RandomForest...
-RandomForest Best Model Accuracy (AUC): 0.86
+RandomForest Best Model Accuracy (AUC): 0.7733320839580207
 Best Params for RandomForest: maxDepth=15
 numTrees=50
 
 Tuning GBT...
-GBT Best Model Accuracy (AUC): 0.88
+GBT Best Model Accuracy (AUC): 0.7568403298350824
 Best Params for GBT: maxDepth=10
 maxIter=20
+
+Best Model: RandomForest with AUC: 0.7733320839580207
 
 ```
 ---
